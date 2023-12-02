@@ -1,0 +1,20 @@
+.q1container {
+    
+    margin-top: 10px;
+    display: flex; /* or inline-flex */
+    flex-direction: row;
+    justify-content: center;   /* horizontally */
+    align-items: center;   /* verically */
+    gap: 50px;   /* only between items */
+
+}
+
+/* ::ng-deep .mat-input-element {
+    color: rgb(228, 221, 20) !important;
+ } */
+
+.mat-button-color1 {
+    background-color: rgb(164, 26, 164); 
+    color: white; 
+    /* border: 1px solid orange; */
+}

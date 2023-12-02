@@ -1,0 +1,14 @@
+<div class="q1container">
+  <div>
+         Item Id:
+        <input #input />
+  </div>
+  <div>
+    <button mat-button class="mat-button-color1" (click)="getItemId(input.value)">
+      Get Item
+    </button>
+  </div>
+  <div *ngIf="queryItemId">
+      Item Id Selected: <span>{{ queryItemId }}</span>
+  </div>
+</div>
