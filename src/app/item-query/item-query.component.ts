@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IItem } from '../iitem';
+import { IItem } from '../dataObjects/iitem';
 import { ItemsDataService } from '../items-data.service';
 
 @Component({

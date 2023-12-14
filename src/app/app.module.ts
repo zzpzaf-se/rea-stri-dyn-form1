@@ -8,20 +8,27 @@ import { MaterialModule } from './material.module';
 import { HomeComponent } from './home/home.component';
 import { ItemQueryComponent } from './item-query/item-query.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormInputDynamicElementComponent } from './formDynamicComponents/form-input-dynamic-element/form-input-dynamic-element.component';
+import { FormButtonDynamicElementComponent } from './formDynamicComponents/form-button-dynamic-element/form-button-dynamic-element.component';
+import { DynamicFormModule } from './formDynamicComponents/dynamic-form.module';
+import { ItemFormHostComponent } from './item-form-host/item-form-host.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ItemQueryComponent
+    ItemQueryComponent,
+    ItemFormHostComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule,
-  ],
+    HttpClientModule, 
+    DynamicFormModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

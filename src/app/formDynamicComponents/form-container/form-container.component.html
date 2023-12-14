@@ -1,0 +1,10 @@
+<p>Dynamic Form (form-container)</p>
+<form [formGroup]="dynamicFormGroup"> 
+    <ng-container 
+    *ngFor="let field of formItems"
+    dynFormElementDirective
+    [formFieldConfig]="field"
+    [dynFormGroup]="dynamicFormGroup" >
+    </ng-container>
+</form>
+<hr>
