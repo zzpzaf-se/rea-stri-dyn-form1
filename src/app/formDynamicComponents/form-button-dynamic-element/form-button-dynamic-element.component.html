@@ -1,8 +1,7 @@
 <!-- <p>button-dyn works!</p> -->
 <br>
 <div [formGroup]="dfGroup">
-    <button type={{fieldConfig.formElementInputType}}>
+    <button type={{fieldConfig.formElementInputType}} (click)="clickEvent.emit(true) ">
         {{ fieldConfig.formElementLabel }}
       </button>
-
 </div>

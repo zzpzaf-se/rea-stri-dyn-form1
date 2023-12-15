@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'form-button-dynamic-element',
@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
 export class FormButtonDynamicElementComponent {
   fieldConfig: any;
   dfGroup: any;
+
+  @Output() clickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
   
 }

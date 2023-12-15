@@ -4,7 +4,10 @@
     *ngFor="let field of formItems"
     dynFormElementDirective
     [formFieldConfig]="field"
-    [dynFormGroup]="dynamicFormGroup" >
+    [dynFormGroup]="dynamicFormGroup" 
+    (clickEvent)="onSubmit($event)">
     </ng-container>
 </form>
+<br>
+{{submitMessage}}
 <hr>

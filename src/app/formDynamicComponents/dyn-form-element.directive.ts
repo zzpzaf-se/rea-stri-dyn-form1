@@ -2,7 +2,9 @@ import {
   ChangeDetectorRef,
   ComponentRef,
   Directive,
+  EventEmitter,
   Input,
+  Output,
   SimpleChanges,
   ViewContainerRef,
 } from '@angular/core';
@@ -29,6 +31,8 @@ export class DynFormElementDirective {
   formFieldConfig!: iformField;
   @Input() 
   dynFormGroup: any;
+  @Output() 
+  clickEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
 
@@ -48,15 +52,16 @@ export class DynFormElementDirective {
       this.componentRef.instance.fieldConfig = this.formFieldConfig;
       this.componentRef.instance.dfGroup = this.dynFormGroup;
      
-      // Without change detection via the following line, we get an error in console:
+      // Without change detection (via the following line), we get an error in console:
       // ERROR Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: 
       // Expression has changed after it was checked. Previous value: 'undefined'. 
       // Current value: '[object Object]'. Expression location: FormInputDynamicElementComponent component 
       // It seems like the view has been created after its parent and its children have been dirty checked. 
       // Has it been created in a change detection hook? Find more at https://angular.io/errors/NG0100
       this.cd.detectChanges();
+      if (this.componentRef.instance.clickEvent)
+        //this.componentRef.instance.clickEvent.subscribe((isClicked: boolean) => console.log("===>> " + isClicked));
+        this.componentRef.instance.clickEvent.subscribe((isClicked: boolean) => this.clickEvent.emit(isClicked));
     }
-
   }
-
 }

@@ -24,6 +24,7 @@ export class FormContainerComponent implements OnInit{
   @Input() 
   public formItems: iformField[] = [];
 
+  public submitMessage:string = "";  
 
   public ngOnInit() {
     this.initializeFormFieldControls();
@@ -47,7 +48,10 @@ export class FormContainerComponent implements OnInit{
     this.dynamicFormGroup = fbGroup;
   }
 
-
+public onSubmit(isSubmiuttonClicked: boolean) {
+  if (!isSubmiuttonClicked) return;
+  this.submitMessage = "Form submitted successfully!";
+}
 
 
 
