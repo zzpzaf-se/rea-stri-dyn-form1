@@ -1,4 +1,8 @@
 <!-- <p>item-form-host works!</p> -->
 <div>
-  <form-container [formItems]="itemsFormFieldsSet1"> </form-container>
+  <form-container
+    [formItems]="itemsFormFieldsSet1"
+    (submitted)="dynFormSubmitted($event)"
+  >
+  </form-container>
 </div>

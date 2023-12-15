@@ -1,10 +1,14 @@
 <p>Dynamic Form (form-container)</p>
-<form [formGroup]="dynamicFormGroup"> 
-    <ng-container 
+<form
+  [formGroup]="dynamicFormGroup"
+  (ngSubmit)="submitted.emit(dynamicFormGroup.value)"
+>
+  <ng-container
     *ngFor="let field of formItems"
     dynFormElementDirective
     [formFieldConfig]="field"
-    [dynFormGroup]="dynamicFormGroup" >
-    </ng-container>
+    [dynFormGroup]="dynamicFormGroup"
+  >
+  </ng-container>
 </form>
-<hr>
+<hr />

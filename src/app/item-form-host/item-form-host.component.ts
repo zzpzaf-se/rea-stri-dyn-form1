@@ -17,6 +17,10 @@ export class ItemFormHostComponent {
     this.prepareItemsFormFields();
   }
 
+  public dynFormSubmitted(formValue: any) {
+    console.log('dynFormSubmitted', formValue);
+  }
+
   // This method is called to select valid fields and build the array of fields to be used here (itemsFormFieldsSet1).
   prepareItemsFormFields(): void {
     ItemsTableFormFields.forEach((field: iformField) => {

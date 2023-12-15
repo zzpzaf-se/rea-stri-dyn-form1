@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { iformField } from '../../dataObjects/iformField';
-import { ItemsTableFormFields } from '../../dataObjects/itemFormFields';
 import {
   FormBuilder,
   FormControl,
@@ -13,17 +12,18 @@ import {
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.css'],
 })
-export class FormContainerComponent implements OnInit{
+export class FormContainerComponent implements OnInit {
+  @Output()
+  submitted: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) {}
 
   dynamicFormGroup!: FormGroup;
 
-  // This is the array of the form fields, that will be used to create the form, 
+  // This is the array of the form fields, that will be used to create the form,
   // and it is obtained from the parent ItemFormHostComponent (item-form-host).
-  @Input() 
+  @Input()
   public formItems: iformField[] = [];
-
 
   public ngOnInit() {
     this.initializeFormFieldControls();
@@ -39,19 +39,11 @@ export class FormContainerComponent implements OnInit{
       //   field.formElementControlName!,
       //   new FormControl('', this.bindValidators(field.formElementValidators!))
       // );
-    fbGroup.addControl(
-        field.formElementControlName!,
-        new FormControl('')
-      );
+      fbGroup.addControl(field.formElementControlName!, new FormControl(''));
     });
     this.dynamicFormGroup = fbGroup;
   }
 
-
-
-
-
-  
   // This method is called to bind the validators to the form controls.
   bindValidators(validators: any[]) {
     if (!validators || validators.length <= 0) return null;
