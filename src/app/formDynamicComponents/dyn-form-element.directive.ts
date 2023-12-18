@@ -35,19 +35,27 @@ export class DynFormElementDirective {
   constructor(private viewContainerRef: ViewContainerRef, private cd: ChangeDetectorRef) {}
   private componentRef!: ComponentRef<any>;
 
+  // public ngOnInit(): void {
+  //   this.viewContainerRef.clear();
+  //   // console.log('>====>> ngOnInit');
+  // } 
+
   // ngAfterContentInit
+  // ngAfterViewInit
   public ngAfterViewInit() {
 
     this.viewContainerRef.clear();
     
     const controlType: dynElementType = this.formFieldConfig?.formElementControlType;
+    //console.log('>====>> controlType', controlType);
 
     if (controlType) {
       const component = dynComponents[controlType];
       this.componentRef = this.viewContainerRef.createComponent(component);
       this.componentRef.instance.fieldConfig = this.formFieldConfig;
       this.componentRef.instance.dfGroup = this.dynFormGroup;
-     
+      // console.log('>====>> this.componentRef.instance', this.componentRef.instance);
+      
       // Without change detection via the following line, we get an error in console:
       // ERROR Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: 
       // Expression has changed after it was checked. Previous value: 'undefined'. 
@@ -55,6 +63,9 @@ export class DynFormElementDirective {
       // It seems like the view has been created after its parent and its children have been dirty checked. 
       // Has it been created in a change detection hook? Find more at https://angular.io/errors/NG0100
       this.cd.detectChanges();
+      // console.log('>====>>  this.componentRef.instance', this.componentRef.instance);
+      
+      
     }
 
   }

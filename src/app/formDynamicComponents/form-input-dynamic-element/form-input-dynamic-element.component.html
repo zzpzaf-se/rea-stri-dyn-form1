@@ -4,7 +4,9 @@
   
   <label for={{fieldConfig.formElementControlName}}> {{fieldConfig.formElementLabel}}: </label> <br>
   <!-- <label for="fname">{{fieldConfig.formElementLabel}} aaa:</label><br> -->
-  <input id={{fieldConfig.formElementControlName}} type={{fieldConfig.formElementInputType}} name={{fieldConfig.formElementControlName}} formControlName={{fieldConfig.formElementControlName}} value="" />
+  <!-- <input id={{fieldConfig.formElementControlName}} type={{fieldConfig.formElementInputType}} name={{fieldConfig.formElementControlName}} formControlName={{fieldConfig.formElementControlName}} value={{fieldConfig.formElementInitialValue}} /> -->
+  <input formControlName={{fieldConfig.formElementControlName}} type={{fieldConfig.formElementInputType}} id={{fieldConfig.formElementControlName}} name={{fieldConfig.formElementControlName}} value={{fieldConfig.formElementInitialValue}} />
+
 
 </div>
 

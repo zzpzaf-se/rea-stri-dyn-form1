@@ -1,7 +1,7 @@
 <p>Dynamic Form (form-container)</p>
 <form
-  [formGroup]="dynamicFormGroup"
-  (ngSubmit)="submitted.emit(dynamicFormGroup.value)"
+  [formGroup]="dynamicFormGroup"  
+  (ngSubmit)= "onFormSubmit($event)"
 >
   <ng-container
     *ngFor="let field of formItems"
@@ -11,4 +11,5 @@
   >
   </ng-container>
 </form>
+
 <hr />

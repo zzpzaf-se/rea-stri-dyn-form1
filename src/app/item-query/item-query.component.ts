@@ -24,9 +24,14 @@ export class ItemQueryComponent {
 
   // Get an Utem by id
   fetchItem(id:number) {
+    if (id === undefined || id === null) {
+      return;
+    }
+    console.log('fetchItem', id);
     return this.itemsServise.getItem(id).subscribe((data: any) => {
       this.item = data;
-      console.log(this.item);
+      //console.log(this.item);
+
     });
   }
 

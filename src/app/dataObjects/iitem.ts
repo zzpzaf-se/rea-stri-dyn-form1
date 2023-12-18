@@ -1,5 +1,6 @@
 
 export interface IItem {
+    [key: string]: any;
     itemId: number;
     itemName: string;
     itemDescription: string;

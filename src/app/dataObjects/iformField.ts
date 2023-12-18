@@ -6,6 +6,7 @@ export type standardInputType = 'color' | 'date' | 'datetime-local' | 'email' | 
 export type dynElementType = 'input' | 'select' | 'date' |  'checkbox' | 'radiobutton' | 'button' ; 
 
 export interface iformField {
+    [key: string]: any;     // index signature
     tableName?: string;
     tableColumnName?: string;
     tableColumnType?: string;
@@ -18,6 +19,7 @@ export interface iformField {
     formElementInputType?: standardInputType;
     formElementLabel?: string;
     formElementPlaceHolder?: string;
+    formElementInitialValue?: any;
     formElementValidators?: iformFieldValidator[];
     formElementValues?: iformFieldOptionalValue[];
 }
