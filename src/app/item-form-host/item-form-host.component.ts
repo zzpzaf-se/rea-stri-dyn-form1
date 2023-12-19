@@ -16,6 +16,8 @@ export class ItemFormHostComponent {
   // This is the item object fetched from backend by the item-query component.  
   @Input()
   public fetchedItem!: IItem;
+  @Input()
+  public fetchedItemCategories!: iformFieldOptionalValue[];
 
   
   // This is the array of the selected form fields that will be used to dynamically generate the form.
@@ -34,7 +36,7 @@ export class ItemFormHostComponent {
   // and whenever one or more data-bound input properties change.
   // This happens frequently, so any operation you perform here impacts performance significantly.
   public ngOnChanges(changes: SimpleChanges) : void { 
-
+    let ready: boolean = false;
     // console.log(">===>> changes", changes);
     for (const chPropName in changes) { 
       //console.log(">===>> chPropName", chPropName);
@@ -45,8 +47,20 @@ export class ItemFormHostComponent {
         }
         this.fetchedItem = changes[chPropName].currentValue;
         console.log(">===>> ItemFormHostComponent - ngOnChanges() - this.fetchedItem", this.fetchedItem);
-        this.prepareItemsFormFields();
+        ready = true;
       }
+      if (chPropName === 'fetchedItemCategories') {
+        //console.log(">===>> changes[chPropName]", changes[chPropName]);
+        if (changes[chPropName].currentValue === undefined || changes[chPropName].currentValue === null) {
+          return;
+        }
+        this.fetchedItemCategories = changes[chPropName].currentValue;
+        console.log(">===>> ItemFormHostComponent - ngOnChanges() - this.fetchedItemCategories", this.fetchedItemCategories);
+        ready = true;
+      }
+      if (ready) {
+        this.prepareItemsFormFields();
+      } 
     }
 
 
@@ -81,11 +95,11 @@ export class ItemFormHostComponent {
 
     // Here we add a select item
 
-    let optionsArray: iformFieldOptionalValue[] = [
-      { valueOrder: 1, valueKey: 101, value: 'Category 1' },
-      { valueOrder: 2, valueKey: 102, value: 'Category 2' },
-      { valueOrder: 3, valueKey: 103, value: 'Category 3' }
-    ];
+    // let optionsArray: iformFieldOptionalValue[] = [
+    //   { valueOrder: 1, valueKey: 101, value: 'Category 1' },
+    //   { valueOrder: 2, valueKey: 102, value: 'Category 2' },
+    //   { valueOrder: 3, valueKey: 103, value: 'Category 3' }
+    // ];
 
     this.itemsFormFieldsSet1.push({
       formElementIsActive: true,
@@ -94,7 +108,7 @@ export class ItemFormHostComponent {
       formElenentOrder: 3,
       formElementPlaceHolder: 'Select Category',
       formElementControlType: 'select',
-      formElementValues: optionsArray,
+      formElementValues: this.fetchedItemCategories,
     });
 
 

@@ -1,19 +1,25 @@
 <div class="q1container">
   <div>
-         Item Id:
-        <input #input />
+    Item Id:
+    <input #input />
   </div>
   <div>
-    <button mat-button class="mat-button-color1" (click)="getItemId(input.value)">
+    <button
+      mat-button
+      class="mat-button-color1"
+      (click)="getItemId(input.value)"
+    >
       Get Item
     </button>
   </div>
   <div *ngIf="queryItemId">
-      Item Id Selected: <span>{{ queryItemId }}</span>
+    Item Id Selected: <span>{{ queryItemId }}</span>
   </div>
 </div>
-<hr>
+<hr />
 <div>
-  <item-form-host [fetchedItem]="item" ></item-form-host>
+  <item-form-host
+    [fetchedItem]="item"
+    [fetchedItemCategories]="itemCategories"
+  ></item-form-host>
 </div>
-

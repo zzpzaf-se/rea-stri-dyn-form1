@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IItem } from '../dataObjects/iitem';
 import { ItemsDataService } from '../items-data.service';
+import { ICategory } from '../dataObjects/icatecory';
+import { iformFieldOptionalValue } from '../dataObjects/iformFieldOptionalValue';
 
 @Component({
   selector: 'item-query',
@@ -13,12 +15,14 @@ export class ItemQueryComponent {
   
   queryItemId: any;
   item!:IItem;
+  itemCategories!: iformFieldOptionalValue[];
 
 
   getItemId(id: any) {
 
     this.queryItemId = <number> id;
     this.fetchItem(this.queryItemId);
+    this.fetchItemCategories();
 
   }
 
@@ -34,6 +38,25 @@ export class ItemQueryComponent {
 
     });
   }
+
+
+    // Fetch all Categories and create an array of iformFieldOptionalValue objects 
+    fetchItemCategories() {
+      if (this.queryItemId === undefined || this.queryItemId === null) {
+        return;
+      }
+
+      const catOptionValues: iformFieldOptionalValue[] = [];
+      let i = 0;      
+      return this.itemsServise.getCategories().subscribe((cattegories: ICategory[]) => {
+        cattegories.forEach((cattegory: ICategory) => {
+          i++;
+          catOptionValues.push({valueOrder: i, valueKey: cattegory.categoryId, value: cattegory.categoryName});
+        });
+        console.log('>===>> ItemQueryComponent - fetchItemCategories - catOptionValues', catOptionValues);
+        this.itemCategories = catOptionValues;
+      });
+    }
 
 
 
