@@ -1,0 +1,19 @@
+<div [formGroup]="dfGroup">
+  <label for="{{ fieldConfig.formElementControlName }}">
+    {{ fieldConfig.formElementLabel }}:
+  </label>
+  <br />
+  <select
+    formControlName="{{ fieldConfig.formElementControlName }}"
+    id="{{ fieldConfig.formElementControlName }}"
+    name="{{ fieldConfig.formElementControlName }}"
+  >
+  <option [ngValue]="null" disabled>Choose one</option>
+    <option
+      *ngFor="let item of fieldConfig.formElementValues"
+      [ngValue]="item.valueKey"
+    >
+        {{ item.value }}
+    </option>
+  </select>
+</div>

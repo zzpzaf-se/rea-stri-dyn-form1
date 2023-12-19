@@ -2,6 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { iformField } from '../dataObjects/iformField';
 import { ItemsTableFormFields } from '../dataObjects/itemFormFields';
 import { IItem } from '../dataObjects/iitem';
+import { iformFieldOptionalValue } from '../dataObjects/iformFieldOptionalValue';
 
 @Component({
   selector: 'item-form-host',
@@ -77,12 +78,32 @@ export class ItemFormHostComponent {
 
     //console.log('>===>> ItemFormHostComponent - itemsFormFieldsSet1', this.itemsFormFieldsSet1);
 
+
+    // Here we add a select item
+
+    let optionsArray: iformFieldOptionalValue[] = [
+      { valueOrder: 1, valueKey: 101, value: 'Category 1' },
+      { valueOrder: 2, valueKey: 102, value: 'Category 2' },
+      { valueOrder: 3, valueKey: 103, value: 'Category 3' }
+    ];
+
+    this.itemsFormFieldsSet1.push({
+      formElementIsActive: true,
+      formElementLabel: 'Select Item Category',
+      formElementControlName: 'category',
+      formElenentOrder: 3,
+      formElementPlaceHolder: 'Select Category',
+      formElementControlType: 'select',
+      formElementValues: optionsArray,
+    });
+
+
     // Here we add a button item
     this.itemsFormFieldsSet1.push({
       formElementIsActive: true,
       formElementLabel: 'Commit',
-      formElementControlName: 'submit-ßbutton',
-      formElenentOrder: 3,
+      formElementControlName: 'submit-button',
+      formElenentOrder: 4,
       formElementPlaceHolder: '',
       formElementInputType: 'submit',
       formElementControlType: 'button',

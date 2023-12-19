@@ -5,6 +5,7 @@ import { FormContainerComponent } from './form-container/form-container.componen
 import { DynFormElementDirective } from './dyn-form-element.directive';
 import { FormInputDynamicElementComponent } from './form-input-dynamic-element/form-input-dynamic-element.component';
 import { FormButtonDynamicElementComponent } from './form-button-dynamic-element/form-button-dynamic-element.component';
+import { FormSelectDynamicElementComponent } from './form-select-dynamic-element/form-select-dynamic-element.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { FormButtonDynamicElementComponent } from './form-button-dynamic-element
                    DynFormElementDirective,
                    FormInputDynamicElementComponent,
                    FormButtonDynamicElementComponent,
+                   FormSelectDynamicElementComponent,
     ],
     exports: [FormContainerComponent],
 })
