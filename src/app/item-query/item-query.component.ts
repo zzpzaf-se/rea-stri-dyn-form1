@@ -22,6 +22,7 @@ export class ItemQueryComponent {
 
     this.queryItemId = <number> id;
     this.fetchItem(this.queryItemId);
+    // console.log('>===>> ItemQueryComponent - fetchItem() - ', this.item);
     this.fetchItemCategories();
 
   }
@@ -31,10 +32,10 @@ export class ItemQueryComponent {
     if (id === undefined || id === null) {
       return;
     }
-    console.log('fetchItem', id);
+    //console.log('ItemQueryComponent - fetchItem() - ', id);
     return this.itemsServise.getItem(id).subscribe((data: any) => {
       this.item = data;
-      //console.log(this.item);
+      console.log('>===>> ItemQueryComponent - fetchItem() - ', this.item);
 
     });
   }

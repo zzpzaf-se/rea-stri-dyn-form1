@@ -25,7 +25,9 @@ export class ItemFormHostComponent {
 
   // A lifecycle hook that is called after Angular has initialized all data-bound properties of a directive.
   ngOnInit() {
-    console.log(">===>> ItemFormHostComponent - ngOnInit() - this.fetchedItem", this.fetchedItem);
+    if (this.fetchedItem) {
+      console.log(">===>> ItemFormHostComponent - ngOnInit() - this.fetchedItem", this.fetchedItem);
+    }
     this.prepareItemsFormFields();
   }
 
@@ -94,12 +96,25 @@ export class ItemFormHostComponent {
 
 
     // Here we add a select item
-
+    // ================================================================================
     // let optionsArray: iformFieldOptionalValue[] = [
     //   { valueOrder: 1, valueKey: 101, value: 'Category 1' },
     //   { valueOrder: 2, valueKey: 102, value: 'Category 2' },
     //   { valueOrder: 3, valueKey: 103, value: 'Category 3' }
     // ];
+
+    // Here we assign any item categories fetched with the fetchedItem as preselected values for the select component
+    if (this.fetchedItem !== undefined && this.fetchedItem.categoryNames.length >= 1 && this.fetchedItemCategories !== undefined) {
+      console.log('>===>> ItemFormHostComponent - this.fetchedItem.itemCategoryNames', this.fetchedItem.categoryNames); 
+      this.fetchedItem.categoryNames!.forEach(name => {
+        this.fetchedItemCategories.forEach(item => {
+          if (item.value === name) {
+            item.valuePreselected = true;
+          }
+        });
+      });
+    }
+
 
     this.itemsFormFieldsSet1.push({
       formElementIsActive: true,
@@ -112,7 +127,10 @@ export class ItemFormHostComponent {
     });
 
 
+
+
     // Here we add a button item
+    // ================================================================================
     this.itemsFormFieldsSet1.push({
       formElementIsActive: true,
       formElementLabel: 'Commit',

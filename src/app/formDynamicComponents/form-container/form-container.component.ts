@@ -66,6 +66,8 @@ export class FormContainerComponent  {
       if (field.formElementControlType === 'input') {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
+      } else if (field.formElementControlType === 'select') {
+        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey));  
       } else {
         fbGroup.addControl(field.formElementControlName!, new FormControl(""));
       }
@@ -87,10 +89,21 @@ export class FormContainerComponent  {
     if (this.dynamicFormGroup === undefined || this.dynamicFormGroup === null) return;
 
     const initValObj: { [key: string]: any } = {};
+    
+    
     this.formItems.forEach((field: iformField) => {
-      if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
-      initValObj[field.formElementControlName!] = field.formElementInitialValue;
+      if (field.formElementControlType === 'input') {
+        if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
+        initValObj[field.formElementControlName!] = field.formElementInitialValue;
+      } else if (field.formElementControlType === 'select') {
+        initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey;
+      } else {
+        initValObj[field.formElementControlName!] = "";
+      }
+
     });
+
+
     console.log('>===>> FormContainerComponent - initializeFormControls() - initValObj', initValObj);
     if (initValObj === undefined || initValObj === null) return;
     this.dynamicFormGroup.setValue(initValObj);

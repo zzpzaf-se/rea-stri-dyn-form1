@@ -9,11 +9,12 @@
     name="{{ fieldConfig.formElementControlName }}"
   >
   <option [ngValue]="null" disabled>Choose one</option>
-    <option
-      *ngFor="let item of fieldConfig.formElementValues"
-      [ngValue]="item.valueKey"
-    >
-        {{ item.value }}
+  <option
+    *ngFor="let item of fieldConfig.formElementValues"
+    [selected]="item.valuePreselected"
+    [ngValue]="item.valueKey" 
+  >
+      {{ item.value }}
     </option>
   </select>
 </div>
