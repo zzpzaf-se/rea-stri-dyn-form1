@@ -10,11 +10,13 @@ import { FormInputDynamicElementComponent } from './form-input-dynamic-element/f
 import { FormButtonDynamicElementComponent } from './form-button-dynamic-element/form-button-dynamic-element.component';
 import { dynElementType, iformField } from '../dataObjects/iformField';
 import { FormSelectDynamicElementComponent } from './form-select-dynamic-element/form-select-dynamic-element.component';
+import { FormRadiobuttonDynamicElementComponent } from './form-radiobutton-dynamic-element/form-radiobutton-dynamic-element.component';
 
 const dynComponents: { [type in dynElementType]?: any } = {
   button: FormButtonDynamicElementComponent,
   input: FormInputDynamicElementComponent,
   select: FormSelectDynamicElementComponent,
+  radiobutton: FormRadiobuttonDynamicElementComponent,
 };
 
 @Directive({

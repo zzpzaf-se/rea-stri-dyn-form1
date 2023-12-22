@@ -127,6 +127,40 @@ export class ItemFormHostComponent {
     });
 
 
+    // Here we add a radio-button item
+    // ================================================================================
+    let optionsArray2: iformFieldOptionalValue[] = [
+      { valueOrder: 1, valueKey: 0, value: 'Pending', valuePreselected: true},
+      { valueOrder: 2, valueKey: 1, value: 'Normal'},
+      { valueOrder: 3, valueKey: 2, value: 'Canceled' }
+    ];
+
+    if (this.fetchedItem !== undefined && this.fetchedItem !== null) {
+      // console.log('>== ****** =>> ItemFormHostComponent - this.fetchedItem.itemStatusId', this.fetchedItem.itemStatusId); 
+      optionsArray2.forEach(item => {
+        if (item.valueKey === this.fetchedItem.itemStatusId) {
+          item.valuePreselected = true;
+          //console.log('>== ****** =>> ItemFormHostComponent - this.fetchedItem.itemStatusId', this.fetchedItem.itemStatusId); 
+        }else {
+          item.valuePreselected = false;
+        }
+      });
+    }
+   
+
+    this.itemsFormFieldsSet1.push({
+      formElementIsActive: true,
+      formElementLabel: 'Select Item Status',
+      formElementControlName: 'itemstatus',
+      formElenentOrder: 4,
+      formElementControlType: 'radiobutton',
+      formElementInputType: "radio",
+      formElementValues: optionsArray2,
+    });
+
+
+
+
 
 
     // Here we add a button item
@@ -135,7 +169,7 @@ export class ItemFormHostComponent {
       formElementIsActive: true,
       formElementLabel: 'Commit',
       formElementControlName: 'submit-button',
-      formElenentOrder: 4,
+      formElenentOrder: 5,
       formElementPlaceHolder: '',
       formElementInputType: 'submit',
       formElementControlType: 'button',

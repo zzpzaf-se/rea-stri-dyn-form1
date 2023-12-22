@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-form-select-dynamic-element',
+  selector: 'form-select-dynamic-element',
   templateUrl: './form-select-dynamic-element.component.html',
   styleUrls: ['./form-select-dynamic-element.component.css']
 })

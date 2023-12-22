@@ -35,13 +35,13 @@ export class FormContainerComponent  {
 
   public ngOnInit() {
     this.createFornGroup();
-    // this.dynamicFormGroup.valueChanges.subscribe(val => {
-    //   //console.log('>===>> FormContainerComponent - Form Value Changes:', val);
-    //   // *** The following line seems to be 'must' to make the form value changes to be submitted.
-    //      this.dynamicFormGroup.patchValue(val, {emitEvent: false, onlySelf: true});
-    //      this.dynamicFormGroup.markAsDirty();
-    //      console.log('>===>> FormContainerComponent - Form Value Changes:',this.dynamicFormGroup.getRawValue());
-    // });
+    this.dynamicFormGroup.valueChanges.subscribe(val => {
+      //console.log('>===>> FormContainerComponent - Form Value Changes:', val);
+      // *** The following line seems to be 'must' to make the form value changes to be submitted.
+         this.dynamicFormGroup.patchValue(val, {emitEvent: false, onlySelf: true});
+         this.dynamicFormGroup.markAsDirty();
+         console.log('>===>> FormContainerComponent - Form Value Changes:',this.dynamicFormGroup.getRawValue());
+    });
   }
 
   public ngOnChanges() {
@@ -68,8 +68,10 @@ export class FormContainerComponent  {
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
       } else if (field.formElementControlType === 'select') {
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey));  
+      } else if (field.formElementControlType === 'radiobutton') {
+        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find(item => item.valuePreselected)?.valueKey));
       } else {
-        fbGroup.addControl(field.formElementControlName!, new FormControl(""));
+        fbGroup.addControl(field.formElementControlName!, new FormControl(""));  
       }
 
     });
@@ -92,11 +94,14 @@ export class FormContainerComponent  {
     
     
     this.formItems.forEach((field: iformField) => {
+      console.log('>===>> FormContainerComponent - initializeFormControls() - field', field); 
       if (field.formElementControlType === 'input') {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         initValObj[field.formElementControlName!] = field.formElementInitialValue;
       } else if (field.formElementControlType === 'select') {
-        initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey;
+        initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey || null;
+      } else if (field.formElementControlType === 'radiobutton') {
+        initValObj[field.formElementControlName!] = field.formElementValues?.find(item => item.valuePreselected)?.valueKey;  
       } else {
         initValObj[field.formElementControlName!] = "";
       }
