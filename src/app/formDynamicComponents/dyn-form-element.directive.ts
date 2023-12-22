@@ -11,12 +11,14 @@ import { FormButtonDynamicElementComponent } from './form-button-dynamic-element
 import { dynElementType, iformField } from '../dataObjects/iformField';
 import { FormSelectDynamicElementComponent } from './form-select-dynamic-element/form-select-dynamic-element.component';
 import { FormRadiobuttonDynamicElementComponent } from './form-radiobutton-dynamic-element/form-radiobutton-dynamic-element.component';
+import { FormDatetimeDynamicElementComponent } from './form-datetime-dynamic-element/form-datetime-dynamic-element.component';
 
 const dynComponents: { [type in dynElementType]?: any } = {
   button: FormButtonDynamicElementComponent,
   input: FormInputDynamicElementComponent,
   select: FormSelectDynamicElementComponent,
   radiobutton: FormRadiobuttonDynamicElementComponent,
+  datetime: FormDatetimeDynamicElementComponent,
 };
 
 @Directive({

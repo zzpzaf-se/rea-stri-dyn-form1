@@ -1,0 +1,16 @@
+<!-- <p>form-datetime-dynamic-element works!</p> -->
+<!-- datetime-local -->
+<br>
+<div [formGroup]="dfGroup">
+    <label for="{{ fieldConfig.formElementControlName }}">
+      {{ fieldConfig.formElementLabel }}:
+    </label>
+    <br />
+    <input
+      formControlName="{{ fieldConfig.formElementControlName }}"
+      id="{{ fieldConfig.formElementControlName }}"
+      name="{{ fieldConfig.formElementControlName }}"
+      [type]="fieldConfig.formElementInputType"
+      value="{{ fieldConfig.formElementInitialValue }}"
+    />  
+</div>    

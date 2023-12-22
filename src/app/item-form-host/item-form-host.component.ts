@@ -3,6 +3,7 @@ import { iformField } from '../dataObjects/iformField';
 import { ItemsTableFormFields } from '../dataObjects/itemFormFields';
 import { IItem } from '../dataObjects/iitem';
 import { iformFieldOptionalValue } from '../dataObjects/iformFieldOptionalValue';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'item-form-host',
@@ -159,6 +160,25 @@ export class ItemFormHostComponent {
     });
 
 
+    // Here we add a datetime-local item
+    // ================================================================================
+    
+    let newField: iformField = {
+      formElementIsActive: true,
+      formElementLabel: 'Select Date & Time:',
+      formElementControlName: 'datetime',
+      formElenentOrder: 5,
+      formElementPlaceHolder: 'Select Date',
+      formElementControlType: 'datetime',
+      formElementInputType: 'datetime-local',
+    };
+    if (this.fetchedItem !== undefined && this.fetchedItem !== null && this.fetchedItem.itemCrTimestamp !== undefined) {
+      console.log('>===>> ItemFormHostComponent - Date Time this.fetchedItem.itemCrTimestamp', this.fetchedItem.itemCrTimestamp); 
+      // let fdate:string = Utils.formatDate(this.fetchedItem.itemCrTimestamp);
+      newField.formElementInitialValue = Utils.formatDate(this.fetchedItem.itemCrTimestamp);
+    }
+    this.itemsFormFieldsSet1.push(newField);
+
 
 
 
@@ -169,7 +189,7 @@ export class ItemFormHostComponent {
       formElementIsActive: true,
       formElementLabel: 'Commit',
       formElementControlName: 'submit-button',
-      formElenentOrder: 5,
+      formElenentOrder: 6,
       formElementPlaceHolder: '',
       formElementInputType: 'submit',
       formElementControlType: 'button',

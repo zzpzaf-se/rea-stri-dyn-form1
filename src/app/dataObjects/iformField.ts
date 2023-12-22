@@ -22,6 +22,8 @@ export type dynElementType =
   | 'input'
   | 'select'
   | 'date'
+  | 'datetime'
+  | 'time'
   | 'checkbox'
   | 'radiobutton'
   | 'button';
