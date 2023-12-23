@@ -1,0 +1,15 @@
+<!-- <p>form-checkbox-dynamic-element works!</p> -->
+<!-- checkbox -->
+<br />
+<!-- I couldn’t neither interpolate nor use property-binding for the attribute "type" of an input tag. -->
+<div [formGroup]="dfGroup">
+    <input
+    id="{{fieldConfig.formElementControlName}}"
+    type="checkbox"
+    value="{{fieldConfig.formElementInitialValue}}"
+    [formControlName]="fieldConfig.formElementControlName"
+    />
+    <label for="{{fieldConfig.formElementControlName}}">
+        {{ fieldConfig.formElementLabel }} 
+    </label>
+</div>

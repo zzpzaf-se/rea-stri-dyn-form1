@@ -1,6 +1,7 @@
 export interface iformFieldOptionalValue {
     valueOrder: number;
-    valueKey: number;
+    valueText?: string;
+    valueKey: number | string;
     value: any;
     valuePreselected?: boolean;
 }

@@ -3,6 +3,7 @@ import { iformFieldValidator } from './iformFieldValidator';
 
 export type standardInputType =
   | 'color'
+  | 'checkbox'
   | 'date'
   | 'datetime-local'
   | 'email'

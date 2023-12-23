@@ -130,7 +130,7 @@ export class ItemFormHostComponent {
 
     // Here we add a radio-button item
     // ================================================================================
-    let optionsArray2: iformFieldOptionalValue[] = [
+    let optionsArray1: iformFieldOptionalValue[] = [
       { valueOrder: 1, valueKey: 0, value: 'Pending', valuePreselected: true},
       { valueOrder: 2, valueKey: 1, value: 'Normal'},
       { valueOrder: 3, valueKey: 2, value: 'Canceled' }
@@ -138,7 +138,7 @@ export class ItemFormHostComponent {
 
     if (this.fetchedItem !== undefined && this.fetchedItem !== null) {
       // console.log('>== ****** =>> ItemFormHostComponent - this.fetchedItem.itemStatusId', this.fetchedItem.itemStatusId); 
-      optionsArray2.forEach(item => {
+      optionsArray1.forEach(item => {
         if (item.valueKey === this.fetchedItem.itemStatusId) {
           item.valuePreselected = true;
           //console.log('>== ****** =>> ItemFormHostComponent - this.fetchedItem.itemStatusId', this.fetchedItem.itemStatusId); 
@@ -156,7 +156,7 @@ export class ItemFormHostComponent {
       formElenentOrder: 4,
       formElementControlType: 'radiobutton',
       formElementInputType: "radio",
-      formElementValues: optionsArray2,
+      formElementValues: optionsArray1,
     });
 
 
@@ -166,7 +166,7 @@ export class ItemFormHostComponent {
     let newField: iformField = {
       formElementIsActive: true,
       formElementLabel: 'Select Date & Time:',
-      formElementControlName: 'datetime',
+      formElementControlName: 'datetimestamp',
       formElenentOrder: 5,
       formElementPlaceHolder: 'Select Date',
       formElementControlType: 'datetime',
@@ -183,13 +183,41 @@ export class ItemFormHostComponent {
 
 
 
+    // Here we add a checkbox item
+    // ================================================================================
+    
+    let optionsArray2: iformFieldOptionalValue[] = [
+      { valueOrder: 1, valueText: 'It is water-proof',valueKey: 'Feature1', value: 'water-proof', valuePreselected: true},
+      { valueOrder: 2, valueText: 'It is mediun-size', valueKey: 'Feature2', value: 'medium-size'},
+      { valueOrder: 3, valueText: 'It has elasticity', valueKey: 'Feature3', value: 'elastic' },
+      { valueOrder: 4, valueText: 'It is durable', valueKey: 'Feature4', value: 'durable' }
+    ];
+
+    let newField2: iformField = {
+      formElementIsActive: true,
+      formElementLabel: 'I want to subscribe',
+      formElementControlName: 'cheksubscribe',
+      formElenentOrder: 6,
+      formElementControlType: 'checkbox',
+      formElementInputType: 'checkbox',
+      formElementInitialValue: true,
+    };
+
+    this.itemsFormFieldsSet1.push(newField2);
+
+
+
+
+
+
+
     // Here we add a button item
     // ================================================================================
     this.itemsFormFieldsSet1.push({
       formElementIsActive: true,
       formElementLabel: 'Commit',
       formElementControlName: 'submit-button',
-      formElenentOrder: 6,
+      formElenentOrder: 7,
       formElementPlaceHolder: '',
       formElementInputType: 'submit',
       formElementControlType: 'button',

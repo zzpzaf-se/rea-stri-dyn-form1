@@ -8,6 +8,7 @@ import { FormButtonDynamicElementComponent } from './form-button-dynamic-element
 import { FormSelectDynamicElementComponent } from './form-select-dynamic-element/form-select-dynamic-element.component';
 import { FormRadiobuttonDynamicElementComponent } from './form-radiobutton-dynamic-element/form-radiobutton-dynamic-element.component';
 import { FormDatetimeDynamicElementComponent } from './form-datetime-dynamic-element/form-datetime-dynamic-element.component';
+import { FormCheckboxDynamicElementComponent } from './form-checkbox-dynamic-element/form-checkbox-dynamic-element.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FormDatetimeDynamicElementComponent } from './form-datetime-dynamic-ele
                    FormSelectDynamicElementComponent,
                    FormRadiobuttonDynamicElementComponent,
                    FormDatetimeDynamicElementComponent,
+                   FormCheckboxDynamicElementComponent,
     ],
     exports: [FormContainerComponent],
 })

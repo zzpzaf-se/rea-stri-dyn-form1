@@ -63,14 +63,17 @@ export class FormContainerComponent  {
     const fbGroup = this.fb.group({});
     this.formItems.forEach((field: iformField) => {
       // The following lines set the initial values of the input form controls. 
-      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime') {
+      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime' ) {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
       } else if (field.formElementControlType === 'select') {
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey));  
       } else if (field.formElementControlType === 'radiobutton') {
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find(item => item.valuePreselected)?.valueKey));
-      } else {
+      } else if (field.formElementControlType === 'checkbox') {
+        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
+      } 
+      else {
         fbGroup.addControl(field.formElementControlName!, new FormControl(""));  
       }
 
@@ -95,13 +98,15 @@ export class FormContainerComponent  {
     
     this.formItems.forEach((field: iformField) => {
       console.log('>===>> FormContainerComponent - initializeFormControls() - field', field); 
-      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime') {
+      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime' ) {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         initValObj[field.formElementControlName!] = field.formElementInitialValue;
       } else if (field.formElementControlType === 'select') {
         initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey || null;
       } else if (field.formElementControlType === 'radiobutton') {
         initValObj[field.formElementControlName!] = field.formElementValues?.find(item => item.valuePreselected)?.valueKey;  
+      } else if (field.formElementControlType === 'checkbox') {
+        initValObj[field.formElementControlName!] = field.formElementInitialValue === 'true' ? true : false;
       } else {
         initValObj[field.formElementControlName!] = "";
       }
