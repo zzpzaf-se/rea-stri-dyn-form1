@@ -23,6 +23,8 @@ const dynComponents: { [type in dynElementType]?: any } = {
   datetime: FormDatetimeDynamicElementComponent,
   checkbox: FormCheckboxDynamicElementComponent,
   checkboxarray: FormCheckboxgroupDynamicElementComponent,
+  date: FormDatetimeDynamicElementComponent,
+  time: FormDatetimeDynamicElementComponent,
 };
 
 @Directive({

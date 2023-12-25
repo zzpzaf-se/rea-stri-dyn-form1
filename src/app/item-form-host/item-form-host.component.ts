@@ -229,8 +229,35 @@ export class ItemFormHostComponent {
 
 
 
+ 
+    // Here we add a date item
+    // ================================================================================
+    
+    let newFieldDate: iformField = {
+      formElementIsActive: true,
+      formElementLabel: 'Select Date:',
+      formElementControlName: 'datecontrol',
+      formElenentOrder: 8,
+      formElementPlaceHolder: 'Select Date',
+      formElementControlType: 'date',
+      formElementInputType: 'date',
+    };
+    this.itemsFormFieldsSet1.push(newFieldDate);
 
-
+ 
+    // Here we add a time item
+    // ================================================================================
+    
+    let newFieldTime: iformField = {
+      formElementIsActive: true,
+      formElementLabel: 'Select Time:',
+      formElementControlName: 'timecontrol',
+      formElenentOrder: 9,
+      formElementPlaceHolder: 'Select Date',
+      formElementControlType: 'time',
+      formElementInputType: 'time',
+    };
+    this.itemsFormFieldsSet1.push(newFieldTime);
 
 
 
@@ -241,7 +268,7 @@ export class ItemFormHostComponent {
       formElementIsActive: true,
       formElementLabel: 'Commit',
       formElementControlName: 'submit-button',
-      formElenentOrder: 8,
+      formElenentOrder: 10,
       formElementPlaceHolder: '',
       formElementInputType: 'submit',
       formElementControlType: 'button',

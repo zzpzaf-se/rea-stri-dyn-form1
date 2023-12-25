@@ -63,7 +63,7 @@ export class FormContainerComponent  {
     const fbGroup = this.fb.group({});
     this.formItems.forEach((field: iformField) => {
       // The following lines set the initial values of the input form controls. 
-      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime' ) {
+      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime' || field.formElementControlType === 'date' || field.formElementControlType === 'time'  ) {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
       } else if (field.formElementControlType === 'select') {
@@ -110,7 +110,7 @@ export class FormContainerComponent  {
     
     this.formItems.forEach((field: iformField) => {
       console.log('>===>> FormContainerComponent - initializeFormControls() - field', field); 
-      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime' ) {
+      if (field.formElementControlType === 'input' || field.formElementControlType === 'datetime' || field.formElementControlType === 'date' || field.formElementControlType === 'time' ) {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         initValObj[field.formElementControlName!] = field.formElementInitialValue;
       } else if (field.formElementControlType === 'select') {
