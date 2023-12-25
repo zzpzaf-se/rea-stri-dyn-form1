@@ -13,10 +13,10 @@
   <option [ngValue]="null" disabled>Choose one</option>
   <option
     *ngFor="let item of fieldConfig.formElementValues"
-    [selected]="item.valuePreselected"
-    [ngValue]="item.valueKey" 
+    [selected]="item.isItemSelected___this_is_not_working"
+    [ngValue]="item.itemKeyName" 
   >
-      {{ item.value }}
+      {{ item.itemValue }}
     </option>
   </select>
 </div>

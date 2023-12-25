@@ -1,4 +1,4 @@
-import { iformFieldOptionalValue } from './iformFieldOptionalValue';
+import { iformFieldOptionalItem } from './iformFieldOptionalItem';
 import { iformFieldValidator } from './iformFieldValidator';
 
 export type standardInputType =
@@ -26,6 +26,7 @@ export type dynElementType =
   | 'datetime'
   | 'time'
   | 'checkbox'
+  | 'checkboxarray'
   | 'radiobutton'
   | 'button';
 
@@ -46,5 +47,5 @@ export interface iformField {
   formElementPlaceHolder?: string;
   formElementInitialValue?: any;
   formElementValidators?: iformFieldValidator[];
-  formElementValues?: iformFieldOptionalValue[];
+  formElementValues?: iformFieldOptionalItem[];
 }

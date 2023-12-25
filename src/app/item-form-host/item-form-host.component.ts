@@ -2,7 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { iformField } from '../dataObjects/iformField';
 import { ItemsTableFormFields } from '../dataObjects/itemFormFields';
 import { IItem } from '../dataObjects/iitem';
-import { iformFieldOptionalValue } from '../dataObjects/iformFieldOptionalValue';
+import { iformFieldOptionalItem } from '../dataObjects/iformFieldOptionalItem';
 import { Utils } from '../Utils';
 
 @Component({
@@ -18,7 +18,7 @@ export class ItemFormHostComponent {
   @Input()
   public fetchedItem!: IItem;
   @Input()
-  public fetchedItemCategories!: iformFieldOptionalValue[];
+  public fetchedItemCategories!: iformFieldOptionalItem[];
 
   
   // This is the array of the selected form fields that will be used to dynamically generate the form.
@@ -98,7 +98,7 @@ export class ItemFormHostComponent {
 
     // Here we add a select item
     // ================================================================================
-    // let optionsArray: iformFieldOptionalValue[] = [
+    // let optionsArray: iformFieldOptionalItem[] = [
     //   { valueOrder: 1, valueKey: 101, value: 'Category 1' },
     //   { valueOrder: 2, valueKey: 102, value: 'Category 2' },
     //   { valueOrder: 3, valueKey: 103, value: 'Category 3' }
@@ -109,8 +109,8 @@ export class ItemFormHostComponent {
       console.log('>===>> ItemFormHostComponent - this.fetchedItem.itemCategoryNames', this.fetchedItem.categoryNames); 
       this.fetchedItem.categoryNames!.forEach(name => {
         this.fetchedItemCategories.forEach(item => {
-          if (item.value === name) {
-            item.valuePreselected = true;
+          if (item.itemValue === name) {
+            item.isItemSelected = true;
           }
         });
       });
@@ -130,25 +130,24 @@ export class ItemFormHostComponent {
 
     // Here we add a radio-button item
     // ================================================================================
-    let optionsArray1: iformFieldOptionalValue[] = [
-      { valueOrder: 1, valueKey: 0, value: 'Pending', valuePreselected: true},
-      { valueOrder: 2, valueKey: 1, value: 'Normal'},
-      { valueOrder: 3, valueKey: 2, value: 'Canceled' }
+    let optionsArray2: iformFieldOptionalItem[] = [
+      { itemOrder: 1, itemKeyName: 0, itemValue: 'Pending', isItemSelected: true},
+      { itemOrder: 2, itemKeyName: 1, itemValue: 'Normal'},
+      { itemOrder: 3, itemKeyName: 2, itemValue: 'Canceled' }
     ];
 
     if (this.fetchedItem !== undefined && this.fetchedItem !== null) {
       // console.log('>== ****** =>> ItemFormHostComponent - this.fetchedItem.itemStatusId', this.fetchedItem.itemStatusId); 
-      optionsArray1.forEach(item => {
-        if (item.valueKey === this.fetchedItem.itemStatusId) {
-          item.valuePreselected = true;
+      optionsArray2.forEach(item => {
+        if (item.itemKeyName === this.fetchedItem.itemStatusId) {
+          item.isItemSelected = true;
           //console.log('>== ****** =>> ItemFormHostComponent - this.fetchedItem.itemStatusId', this.fetchedItem.itemStatusId); 
         }else {
-          item.valuePreselected = false;
+          item.isItemSelected = false;
         }
       });
     }
    
-
     this.itemsFormFieldsSet1.push({
       formElementIsActive: true,
       formElementLabel: 'Select Item Status',
@@ -156,10 +155,16 @@ export class ItemFormHostComponent {
       formElenentOrder: 4,
       formElementControlType: 'radiobutton',
       formElementInputType: "radio",
-      formElementValues: optionsArray1,
+      formElementValues: optionsArray2,
     });
 
 
+
+
+
+
+
+    
     // Here we add a datetime-local item
     // ================================================================================
     
@@ -183,15 +188,9 @@ export class ItemFormHostComponent {
 
 
 
-    // Here we add a checkbox item
+    // Here we add a single checkbox item
     // ================================================================================
     
-    let optionsArray2: iformFieldOptionalValue[] = [
-      { valueOrder: 1, valueText: 'It is water-proof',valueKey: 'Feature1', value: 'water-proof', valuePreselected: true},
-      { valueOrder: 2, valueText: 'It is mediun-size', valueKey: 'Feature2', value: 'medium-size'},
-      { valueOrder: 3, valueText: 'It has elasticity', valueKey: 'Feature3', value: 'elastic' },
-      { valueOrder: 4, valueText: 'It is durable', valueKey: 'Feature4', value: 'durable' }
-    ];
 
     let newField2: iformField = {
       formElementIsActive: true,
@@ -207,6 +206,31 @@ export class ItemFormHostComponent {
 
 
 
+    // Here we add an array of checkbox items (a checkbox group)
+    // ================================================================================
+       
+    let checkBoxArray: iformFieldOptionalItem[] = [
+      { itemOrder: 1, itemText: 'It is water-proof',itemKeyName: 'Feature1', itemValue: 'water-proof', isItemSelected: true},
+      { itemOrder: 2, itemText: 'It is mediun-size', itemKeyName: 'Feature2', itemValue: 'medium-size'},
+      { itemOrder: 3, itemText: 'It has elasticity', itemKeyName: 'Feature3', itemValue: 'elastic' },
+      { itemOrder: 4, itemText: 'It is durable', itemKeyName: 'Feature4', itemValue: 'durable' }
+    ];
+
+    let newField3: iformField = {
+      formElementLabel: 'Select all that apply:',
+      formElementControlName: 'chekarray',
+      formElenentOrder: 7,
+      formElementControlType: 'checkboxarray',
+      formElementValues: checkBoxArray,
+    };
+
+    this.itemsFormFieldsSet1.push(newField3);
+
+
+
+
+
+
 
 
 
@@ -217,7 +241,7 @@ export class ItemFormHostComponent {
       formElementIsActive: true,
       formElementLabel: 'Commit',
       formElementControlName: 'submit-button',
-      formElenentOrder: 7,
+      formElenentOrder: 8,
       formElementPlaceHolder: '',
       formElementInputType: 'submit',
       formElementControlType: 'button',

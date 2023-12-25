@@ -1,0 +1,16 @@
+<!-- checkboxes array/group -->
+<br />
+<div [formGroup]="dfGroup">
+  {{ fieldConfig.formElementLabel }}  
+  <!-- <div *ngFor="let control of dfGroup.get('chekarray').controls; let i = index"> -->
+  <div *ngFor="let control of dfGroup.get(fieldConfig.formElementControlName).controls; let i = index">
+    <input
+      id="{{ fieldConfig.formElementValues[i].itemKeyName }}"
+      type="checkbox"
+      [formControl]="control"
+    />
+    <label for="{{ fieldConfig.formElementValues[i].itemKeyName }}">
+      {{ fieldConfig.formElementValues[i].itemText }}
+    </label>
+  </div>
+</div>

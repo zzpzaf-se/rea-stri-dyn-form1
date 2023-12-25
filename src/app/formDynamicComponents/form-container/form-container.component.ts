@@ -4,9 +4,9 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  NgForm,
   Validators,
 } from '@angular/forms';
+import { iformFieldOptionalItem } from 'src/app/dataObjects/iformFieldOptionalItem';
 
 @Component({
   selector: 'form-container',
@@ -67,19 +67,31 @@ export class FormContainerComponent  {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
       } else if (field.formElementControlType === 'select') {
-        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey));  
+        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.isItemSelected === true)?.itemKeyName));  
       } else if (field.formElementControlType === 'radiobutton') {
-        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find(item => item.valuePreselected)?.valueKey));
+        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find(item => item.isItemSelected)?.itemKeyName));
       } else if (field.formElementControlType === 'checkbox') {
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
-      } 
-      else {
+      }  else if (field.formElementControlType === 'checkboxarray') {
+        // createFormArray and add it to the form group
+        console.log('>== ***** =>> FormContainerComponent - createFormArray and add it to the form group   ==============', field.formElementValues);
+        let checkBoxArray = this.fb.array([]);
+        field.formElementValues?.forEach((item: iformFieldOptionalItem) => {
+          //checkBoxArray.push(new FormControl(item.isItemSelected ? item.itemValue : ''));
+          let frmControl = new FormControl(item.isItemSelected ? true : false);
+          // checkBoxArray.push(new FormControl(item.isItemSelected ? true : false));
+          checkBoxArray.push(frmControl);
+        });
+        // console.log('>== ***** =>> FormContainerComponent - createFornGroup() - checkBoxArray', checkBoxArray);
+        fbGroup.addControl(field.formElementControlName!, checkBoxArray);   // Here we use the formElementControlName as the formArray name
+      
+      } else {
         fbGroup.addControl(field.formElementControlName!, new FormControl(""));  
       }
 
     });
     this.dynamicFormGroup = fbGroup;
-    console.log('>===>> FormContainerComponent - dynamicFormGroup.value', this.dynamicFormGroup.value);
+    console.log('>== ******* =>> FormContainerComponent - dynamicFormGroup.value', this.dynamicFormGroup.value);
 
   }
 
@@ -89,7 +101,7 @@ export class FormContainerComponent  {
   // It sets the initial value of the form group (if any). It is called from the ngOnChanges() life cycle hook. 
   initializeFormControls() {  
   
-     console.log('>===>> FormContainerComponent - initializeFormControls() - formItems', this.formItems); 
+     console.log('>== ++++++ =>> FormContainerComponent - initializeFormControls() - formItems', this.formItems); 
     if (!this.formItems || this.formItems.length <= 0) return;
     if (this.dynamicFormGroup === undefined || this.dynamicFormGroup === null) return;
 
@@ -102,11 +114,15 @@ export class FormContainerComponent  {
         if (field.formElementInitialValue === undefined) field.formElementInitialValue = null;
         initValObj[field.formElementControlName!] = field.formElementInitialValue;
       } else if (field.formElementControlType === 'select') {
-        initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey || null;
+        initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.isItemSelected === true)?.itemKeyName;
       } else if (field.formElementControlType === 'radiobutton') {
-        initValObj[field.formElementControlName!] = field.formElementValues?.find(item => item.valuePreselected)?.valueKey;  
+        initValObj[field.formElementControlName!] = field.formElementValues?.find(item => item.isItemSelected)?.itemKeyName;  
       } else if (field.formElementControlType === 'checkbox') {
         initValObj[field.formElementControlName!] = field.formElementInitialValue === 'true' ? true : false;
+      } else if (field.formElementControlType === 'checkboxarray') {
+        // Here we  wiil assign checked/unchecked values to the formArray, according to the values fetced from the backend.
+        // Untill now we don't have such a design in the backend, so we don't do ti now.
+        // Generally we can do that in a similar manner as in the createFornGroup() method. 
       } else {
         initValObj[field.formElementControlName!] = "";
       }
@@ -119,6 +135,13 @@ export class FormContainerComponent  {
     this.dynamicFormGroup.setValue(initValObj);
     this.dynamicFormGroup.markAsDirty();
   }
+
+
+
+
+
+
+
 
 
 

@@ -13,6 +13,7 @@ import { FormSelectDynamicElementComponent } from './form-select-dynamic-element
 import { FormRadiobuttonDynamicElementComponent } from './form-radiobutton-dynamic-element/form-radiobutton-dynamic-element.component';
 import { FormDatetimeDynamicElementComponent } from './form-datetime-dynamic-element/form-datetime-dynamic-element.component';
 import { FormCheckboxDynamicElementComponent } from './form-checkbox-dynamic-element/form-checkbox-dynamic-element.component';
+import { FormCheckboxgroupDynamicElementComponent } from './form-checkboxgroup-dynamic-element/form-checkboxgroup-dynamic-element.component';
 
 const dynComponents: { [type in dynElementType]?: any } = {
   button: FormButtonDynamicElementComponent,
@@ -21,6 +22,7 @@ const dynComponents: { [type in dynElementType]?: any } = {
   radiobutton: FormRadiobuttonDynamicElementComponent,
   datetime: FormDatetimeDynamicElementComponent,
   checkbox: FormCheckboxDynamicElementComponent,
+  checkboxarray: FormCheckboxgroupDynamicElementComponent,
 };
 
 @Directive({
