@@ -1,3 +1,4 @@
+import { Validators } from '@angular/forms';
 import { iformField } from './iformField';
 
 export const ItemsTableFormFields: iformField[] = [
@@ -30,12 +31,19 @@ export const ItemsTableFormFields: iformField[] = [
     formElementInputType: 'text',
     formElementLabel: 'Item Name',
     formElementPlaceHolder: 'Enter Item Name',
-    formElementValidators: [{validatorName: 'required', 
-                             validator: 'Validators.required', 
-                             validatorErrorMessage: 'The Item Name field is required.'},
-                             {validatorName: 'minLength', 
-                             validator: 'Validators.minLength(2)', 
-                             validatorErrorMessage: 'The Item Name field  must be at least 2 characters long.'}],
+    formElementValidators: [
+      {
+        validatorName: 'required',
+        validator: Validators.required,
+        validatorErrorMessage: 'The Item Name field is required.',
+      },
+      {
+        validatorName: 'minlength',             // *** Please pay attention that it is minlength and not minLengh (no L but l) ***
+        validator: Validators.minLength(2),
+        validatorErrorMessage:
+          'The Item Name field  must be at least 2 characters long.',
+      },
+    ],
     formElementValues: [],
   },
   {
@@ -51,9 +59,19 @@ export const ItemsTableFormFields: iformField[] = [
     formElementInputType: 'text',
     formElementLabel: 'Item Description',
     formElementPlaceHolder: 'Enter Item Description',
-    formElementValidators: [{validatorName: 'required', 
-                             validator: 'Validators.required', 
-                             validatorErrorMessage: 'The Item Description field is required.'}],
+    formElementValidators: [
+      {
+        validatorName: 'required',
+        validator: Validators.required,
+        validatorErrorMessage: 'The Item Description field is required.',
+      },
+      {
+        validatorName: 'minlength',        // *** Please pay attention that it is minlength and not minLengh (no L but l) ***
+        validator: Validators.minLength(5),
+        validatorErrorMessage:
+          'The Item Name field  must be at least 5 characters long.',
+      },
+    ],
     formElementValues: [],
   },
   {
@@ -69,7 +87,26 @@ export const ItemsTableFormFields: iformField[] = [
     formElementInputType: 'number',
     formElementLabel: 'Item Model Year',
     formElementPlaceHolder: 'Enter Item Model Year',
-    formElementValidators: [],
+    formElementMinValue: 1998,
+    formElementMaxValue: 2024,
+    formElementStepValue: 1,
+    formElementValidators: [
+      {
+        validatorName: 'required',
+        validator: Validators.required,
+        validatorErrorMessage: 'A valid Year must be provided.',
+      },
+      {
+        validatorName: 'max',
+        validator: Validators.max(2024),
+        validatorErrorMessage: 'The Year must not be greater than 2024.',
+      },
+      {
+        validatorName: 'min',
+        validator: Validators.min(1998),
+        validatorErrorMessage: 'The Year must not be less than 1998.',
+      },
+    ],
     formElementValues: [],
   },
   {

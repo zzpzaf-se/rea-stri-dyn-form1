@@ -42,10 +42,12 @@ export interface iformField {
   formElementControlType: dynElementType;
   formElementIsEditable?: boolean;
   formElementInputType?: standardInputType;
-  //   formElementInputType?: string;
   formElementLabel: string;
   formElementPlaceHolder?: string;
   formElementInitialValue?: any;
+  formElementMinValue?: number;
+  formElementMaxValue?: number; 
+  formElementStepValue?: number;
   formElementValidators?: iformFieldValidator[];
   formElementValues?: iformFieldOptionalItem[];
 }

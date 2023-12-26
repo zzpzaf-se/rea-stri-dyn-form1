@@ -12,7 +12,10 @@ import { Utils } from '../Utils';
 })
 export class ItemFormHostComponent {
   // This is the array of table column names that will be used to dynamically generate the form.
-  activeFieldColumnNames: string[] = ['itemName', 'itemDescription'];
+  // activeFieldColumnNames: string[] = ['itemName', 'itemDescription'];
+  activeFieldColumnNames: string[] = ['itemName', 'itemDescription', 'itemModelYear'];
+
+
   
   // This is the item object fetched from backend by the item-query component.  
   @Input()
