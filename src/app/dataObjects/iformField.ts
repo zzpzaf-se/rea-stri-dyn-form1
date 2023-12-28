@@ -30,6 +30,7 @@ export type dynElementType =
   | 'radiobutton'
   | 'button';
 
+  
 export interface iformField {
   [key: string]: any; // index signature
   tableName?: string;
@@ -50,4 +51,6 @@ export interface iformField {
   formElementStepValue?: number;
   formElementValidators?: iformFieldValidator[];
   formElementValues?: iformFieldOptionalItem[];
+  formElementSelectMultiple?: boolean;
+  formElementSelectSize?: number;
 }

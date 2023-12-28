@@ -9,13 +9,25 @@
     formControlName="{{ fieldConfig.formElementControlName }}"
     id="{{ fieldConfig.formElementControlName }}"
     name="{{ fieldConfig.formElementControlName }}"
+    [multiple]="fieldConfig.formElementSelectMultiple"
   >
-  <option [ngValue]="null" disabled>Choose one</option>
-  <option
-    *ngFor="let item of fieldConfig.formElementValues"
-    [selected]="item.isItemSelected___this_is_not_working"
-    [ngValue]="item.itemKeyName" 
-  >
+    <option
+      [ngValue]="null"
+      disabled
+    >
+    <ng-template [ngIf]="!fieldConfig.formElementSelectMultiple" [ngIfElse]="multi" >
+      Choose one:
+    </ng-template>
+    <ng-template #multi>
+      Choose at least one:
+    </ng-template>
+  </option>
+
+    <option
+      *ngFor="let item of fieldConfig.formElementValues"
+
+      [ngValue]="item.itemKeyName"
+    >
       {{ item.itemValue }}
     </option>
   </select>

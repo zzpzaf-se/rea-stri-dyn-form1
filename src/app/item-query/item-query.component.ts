@@ -17,6 +17,10 @@ export class ItemQueryComponent {
   item!:IItem;
   itemCategories!: iformFieldOptionalItem[];
 
+  ngOnInit(): void {  
+    this.fetchItemCategories();
+    console.log('>= oooooo ==>> ItemQueryComponent - ngOnInit() - ', this.itemCategories);
+  }
 
   getItemId(id: any) {
 
@@ -43,9 +47,9 @@ export class ItemQueryComponent {
 
     // Fetch all Categories and create an array of iformFieldOptionalItem objects 
     fetchItemCategories() {
-      if (this.queryItemId === undefined || this.queryItemId === null) {
-        return;
-      }
+      // if (this.queryItemId === undefined || this.queryItemId === null) {
+      //   return;
+      // }
 
       const catOptionValues: iformFieldOptionalItem[] = [];
       let i = 0;      
@@ -54,7 +58,7 @@ export class ItemQueryComponent {
           i++;
           catOptionValues.push({itemOrder: i, itemKeyName: cattegory.categoryId, itemValue: cattegory.categoryName});
         });
-        console.log('>===>> ItemQueryComponent - fetchItemCategories - catOptionValues', catOptionValues);
+        //console.log('>===>> ItemQueryComponent - fetchItemCategories - catOptionValues', catOptionValues);
         this.itemCategories = catOptionValues;
       });
     }

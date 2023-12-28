@@ -61,7 +61,7 @@ export class ItemFormHostComponent {
           return;
         }
         this.fetchedItemCategories = changes[chPropName].currentValue;
-        console.log(">===>> ItemFormHostComponent - ngOnChanges() - this.fetchedItemCategories", this.fetchedItemCategories);
+        console.log(">== %%%%% =>> ItemFormHostComponent - ngOnChanges() - this.fetchedItemCategories", this.fetchedItemCategories);
         ready = true;
       }
       if (ready) {
@@ -76,6 +76,8 @@ export class ItemFormHostComponent {
   public dynFormSubmitted(formValue: any) {
     console.log('>===>> ItemFormHostComponent - dynFormSubmitted', formValue);
   }
+
+
 
   // This method is called to select valid fields and build the array of fields to be used here (itemsFormFieldsSet1).
   prepareItemsFormFields(): void {
@@ -101,14 +103,9 @@ export class ItemFormHostComponent {
 
     // Here we add a select item
     // ================================================================================
-    // let optionsArray: iformFieldOptionalItem[] = [
-    //   { valueOrder: 1, valueKey: 101, value: 'Category 1' },
-    //   { valueOrder: 2, valueKey: 102, value: 'Category 2' },
-    //   { valueOrder: 3, valueKey: 103, value: 'Category 3' }
-    // ];
-
     // Here we assign any item categories fetched with the fetchedItem as preselected values for the select component
-    if (this.fetchedItem !== undefined && this.fetchedItem.categoryNames.length >= 1 && this.fetchedItemCategories !== undefined) {
+    // if (this.fetchedItem !== undefined && this.fetchedItem.categoryNames.length >= 1 && this.fetchedItemCategories !== undefined) {
+    if (this.fetchedItemCategories !== undefined && this.fetchedItemCategories !== null && this.fetchedItem !== undefined && this.fetchedItem !== null) {  
       console.log('>===>> ItemFormHostComponent - this.fetchedItem.itemCategoryNames', this.fetchedItem.categoryNames); 
       this.fetchedItem.categoryNames!.forEach(name => {
         this.fetchedItemCategories.forEach(item => {
@@ -117,6 +114,7 @@ export class ItemFormHostComponent {
           }
         });
       });
+      //console.log('>===>> ItemFormHostComponent - this.fetchedItemCategories', this.fetchedItemCategories);
     }
 
 
@@ -128,6 +126,8 @@ export class ItemFormHostComponent {
       formElementPlaceHolder: 'Select Category',
       formElementControlType: 'select',
       formElementValues: this.fetchedItemCategories,
+      formElementSelectMultiple: true,
+      
     });
 
 

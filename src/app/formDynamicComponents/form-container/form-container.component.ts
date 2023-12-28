@@ -91,7 +91,16 @@ export class FormContainerComponent  {
         //fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue));
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementInitialValue, this.bindValidators(field.formElementValidators!)  ));
       } else if (field.formElementControlType === 'select') {
-        fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.isItemSelected === true)?.itemKeyName));  
+        let initValues: any[] = [];
+        field.formElementValues?.forEach((item) => {
+          if (item.isItemSelected) initValues.push(item.itemKeyName);
+        });
+        fbGroup.addControl(field.formElementControlName!, new FormControl(initValues));
+        // if (field.formElementSelectMultiple) {
+        //   fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.filter((item) => item.isItemSelected === true).map((item) => item.itemKeyName) || []));
+        // } else {
+        //   fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find((item) => item.isItemSelected === true)?.itemKeyName));  
+        //  }
       } else if (field.formElementControlType === 'radiobutton') {
         fbGroup.addControl(field.formElementControlName!, new FormControl(field.formElementValues?.find(item => item.isItemSelected)?.itemKeyName));
       } else if (field.formElementControlType === 'checkbox') {
@@ -143,8 +152,16 @@ export class FormContainerComponent  {
         initValObj[field.formElementControlName!] = field.formElementInitialValue;
        // console.log('>== |||| =>> FormContainerComponent - initializeFormControls() - input', field.formElementInitialValue);
       } else if (field.formElementControlType === 'select') {
-        initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.isItemSelected === true)?.itemKeyName || null;
-        // initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.valuePreselected === true)?.valueKey || null;
+        let initValues: any[] = [];
+        field.formElementValues?.forEach((item) => {
+          if (item.isItemSelected) initValues.push(item.itemKeyName);
+        });
+        initValObj[field.formElementControlName!] = initValues;
+        // if (field.formElementSelectMultiple) {
+          //    initValObj[field.formElementControlName!] = field.formElementValues?.filter((item) => item.isItemSelected === true).map((item) => item.itemKeyName) || [];
+        // } else {
+          //    initValObj[field.formElementControlName!] = field.formElementValues?.find((item) => item.isItemSelected === true)?.itemKeyName || null;
+        // }
       } else if (field.formElementControlType === 'radiobutton') {
         initValObj[field.formElementControlName!] = field.formElementValues?.find(item => item.isItemSelected)?.itemKeyName;  
       } else if (field.formElementControlType === 'checkbox') {
