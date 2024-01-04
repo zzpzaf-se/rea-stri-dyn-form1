@@ -33,6 +33,7 @@ export class FormContainerComponent  {
 
  // @ViewChild('ngForm') ngForm!: NgForm;
   
+ fornCardTitle: string = 'My Dynamic Form for an Item';
   dynamicFormGroup!: FormGroup;
 
   public ngOnInit() {
@@ -69,6 +70,9 @@ export class FormContainerComponent  {
     //   this.validateAllFormFields(this.dynamicFormGroup);
     // }
   }
+  onClose(): void {
+    // this.router.navigate(["/"]);
+  }   
 
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {

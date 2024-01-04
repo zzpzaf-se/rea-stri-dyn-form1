@@ -10,11 +10,13 @@ import { FormRadiobuttonDynamicElementComponent } from './form-radiobutton-dynam
 import { FormDatetimeDynamicElementComponent } from './form-datetime-dynamic-element/form-datetime-dynamic-element.component';
 import { FormCheckboxDynamicElementComponent } from './form-checkbox-dynamic-element/form-checkbox-dynamic-element.component';
 import { FormCheckboxgroupDynamicElementComponent } from './form-checkboxgroup-dynamic-element/form-checkboxgroup-dynamic-element.component';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   imports: [
     CommonModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
     ],
     declarations: [FormContainerComponent, 
                    DynFormElementDirective,

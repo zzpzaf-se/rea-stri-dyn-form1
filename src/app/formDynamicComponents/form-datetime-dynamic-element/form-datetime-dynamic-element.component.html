@@ -1,16 +1,65 @@
 <!-- <p>form-datetime-dynamic-element works!</p> -->
 <!-- datetime-local -->
-<br>
+<br />
+
 <div [formGroup]="dfGroup">
-    <label for="{{ fieldConfig.formElementControlName }}">
+  <mat-form-field>
+    <!-- <label for="{{ fieldConfig.formElementControlName }}">
       {{ fieldConfig.formElementLabel }}:
-    </label>
+    </label> -->
+    <mat-label> {{ fieldConfig.formElementLabel }}: </mat-label>
     <br />
-    <input
+
+    <!-- The @angular-material-components/datetime-picker -->
+    <!-- <input matInput [ngxMatDatetimePicker]="picker" 
       formControlName="{{ fieldConfig.formElementControlName }}"
       id="{{ fieldConfig.formElementControlName }}"
       name="{{ fieldConfig.formElementControlName }}"
       [type]="fieldConfig.formElementInputType"
-      value="{{ fieldConfig.formElementInitialValue }}"
+      [value]="fieldConfig.formElementInitialValue | date: 'yyyy-MM-ddTHH:mm'"
+
     />  
-</div>    
+    <ngx-mat-datepicker-toggle matIconSuffix [for]="picker"></ngx-mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker> -->
+
+    <!-- For @ng-matero/extensions@16.2.0  DateTimePicker -->
+
+    <mtx-datetimepicker
+      #datetimePicker
+      [type]="mtxType"
+      
+      >
+    </mtx-datetimepicker>
+    
+    <input
+      matInput
+      [mtxDatetimepicker]="datetimePicker"
+      formControlName="{{ fieldConfig.formElementControlName }}"
+
+    />
+
+    <mtx-datetimepicker-toggle
+      [for]="datetimePicker"
+      matSuffix
+      >
+  </mtx-datetimepicker-toggle>
+
+
+    <!-- The default 'detepicker' -->
+    <!-- <input
+      matInput
+      [matDatepicker]="picker"
+      formControlName="{{ fieldConfig.formElementControlName }}"
+      id="{{ fieldConfig.formElementControlName }}"
+      name="{{ fieldConfig.formElementControlName }}"
+      [type]="fieldConfig.formElementInputType"
+      [value]="fieldConfig.formElementInitialValue | date : 'yyyy-MM-ddTHH:mm'"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker> -->
+
+
+
+
+  </mat-form-field>
+</div>

@@ -1,29 +1,46 @@
 <!-- input  -->
 <br />
-<div [formGroup]="dfGroup">
-  <label for="{{ fieldConfig.formElementControlName }}">
-    {{ fieldConfig.formElementLabel }}:
-  </label>
-  <br />
-  <!-- <label for="fname">{{fieldConfig.formElementLabel}} aaa:</label><br> -->
-  <!-- <input id={{fieldConfig.formElementControlName}} type={{fieldConfig.formElementInputType}} name={{fieldConfig.formElementControlName}} formControlName={{fieldConfig.formElementControlName}} value={{fieldConfig.formElementInitialValue}} /> -->
-  <input
-    formControlName="{{ fieldConfig.formElementControlName }}"
-    type="{{ fieldConfig.formElementInputType }}"
-    min="{{ fieldConfig.formElementMinValue }}"
-    max="{{ fieldConfig.formElementMaxValue }}"
-    step="{{ fieldConfig.formElementStepValue }}"
-    id="{{ fieldConfig.formElementControlName }}"
-    name="{{ fieldConfig.formElementControlName }}"
-    value="{{ fieldConfig.formElementInitialValue }}"
-  />
-</div>
+<mat-form-field>
+  <div [formGroup]="dfGroup">
+    <!-- <label for="{{ fieldConfig.formElementControlName }}">
+      {{ fieldConfig.formElementLabel }}:
+    </label> -->
+    <mat-label>
+      {{ fieldConfig.formElementLabel }}:
+    </mat-label>
+    <!-- <br /> -->
+    <!-- <label for="fname">{{fieldConfig.formElementLabel}} aaa:</label><br> -->
+    <!-- <input id={{fieldConfig.formElementControlName}} type={{fieldConfig.formElementInputType}} name={{fieldConfig.formElementControlName}} formControlName={{fieldConfig.formElementControlName}} value={{fieldConfig.formElementInitialValue}} /> -->
+    <input matInput
+      placeholder="{{ fieldConfig.formElementPlaceHolder }}"
+      formControlName="{{ fieldConfig.formElementControlName }}"
+      type="{{ fieldConfig.formElementInputType }}"
+      min="{{ fieldConfig.formElementMinValue }}"
+      max="{{ fieldConfig.formElementMaxValue }}"
+      step="{{ fieldConfig.formElementStepValue }}"
+      id="{{ fieldConfig.formElementControlName }}"
+      name="{{ fieldConfig.formElementControlName }}"
+      value="{{ fieldConfig.formElementInitialValue }}"
+    />
+  </div>
 
-<div *ngIf="dfGroup.controls[fieldConfig.formElementControlName].errors">
-  <!-- This Field has errors. -->
-  <ng-container *ngFor="let validation of fieldConfig.formElementValidators" >
-    <div *ngIf="dfGroup.controls[fieldConfig.formElementControlName].errors[validation.validatorName]">
-      <span style="color: red; font-size: x-small;">{{validation.validatorErrorMessage}}</span> 
-    </div>
-  </ng-container>
-</div>
+  <div *ngIf="dfGroup.controls[fieldConfig.formElementControlName].errors">
+    <!-- This Field has errors. -->
+    <ng-container *ngFor="let validation of fieldConfig.formElementValidators">
+      <div
+        *ngIf="
+          dfGroup.controls[fieldConfig.formElementControlName].errors[
+            validation.validatorName
+          ]
+        "
+      >
+        <!-- <span style="color: red; font-size: x-small">
+         {{ validation.validatorErrorMessage }}
+       </span> -->
+       <mat-error style="font-size: x-small">
+         {{ validation.validatorErrorMessage }} 
+        </mat-error>
+      </div>
+    </ng-container>
+  </div>
+</mat-form-field>

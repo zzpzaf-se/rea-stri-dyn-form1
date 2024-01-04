@@ -1,0 +1,97 @@
+// Official guidelines 
+// For newer versions using namespaces with '@use' instead of '@import' see at:
+// https://material.angular.io/guide/theming#multiple-themes
+// For older versions prior Angular material 12, see at:
+// https://v11.material.angular.io/guide/theming
+// ==================================================================================
+
+// Here we use the newer syntax using namespaces with '@use' instead of the older '@import'
+// Note that when we mix 'use' with 'import', we have to precede '@use' because '@use rules must be written before any other rules.'
+
+
+@use '@angular/material' as mat;
+// The above 'import' is for the default theming of the Angular Material components 
+
+@use '@ng-matero/extensions' as mtx;
+// The above 'import' is for theming the Datetimepicker of the matero/extensions 
+// See more, for the newer version, at 
+// https://github.com/ng-matero/extensions 
+// and for older version prior 12, see at:
+// https://www.npmjs.com/package/@ng-matero/extensions/v/11.5.0
+
+
+@include mat.core();
+// The above line includes the mixin for the common styles for Angular Material, and this should be included only once/
+// Angular Material defines a mixin named core that includes prerequisite styles for common features used by multiple components, 
+// such as ripples. The core mixin must be included exactly once for your application, even if you define multiple themes. 
+// Including the core mixin multiple times will result in duplicate CSS in your application.
+
+// Thus, we have to load just a single .css file -the styles.css file- for Angular Material in our app. 
+// Recall that the styles.css file is created during the creation of our app's project with the CLI command, when we select 
+// as stylesheet type the CSS option. This file is the place where we defined our default Angular Material theme, e.g.:
+// /* Theme Name: indigo-pink (default) */
+// @import '@angular/material/prebuilt-themes/indigo-pink.css';   
+
+$theme1-primary: mat.define-palette(mat.$blue-grey-palette, 900, 500, 700);
+$theme1-accent: mat.define-palette(mat.$red-palette, 900, 800, 700);
+$theme1-warn: mat.define-palette(mat.$deep-orange-palette);     // optional
+// The above 3 lines define the 3 variables for primary, accent, and warning (optional) variables, that are required for our customized theme.
+// Note that we can also do this by importing palette definitions from another custom .scss file (a Sass map file containing all of the palettes). 
+// However, here, we define them directly, as parameters, via the mat-palette() function. 
+// Note that, the mat-palette() function, takes a color name as its first argument, and the remaining optional second, third and fourth arguments 
+// define a default value, a lighter value and a darker value. One can find the predefined Material Design color palettes at the official documentation: 
+// https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors under the ‘2014 Material Design color palettes’ section 
+// (or you can use the Material palette generator).
+// Also note, that the "warn" palette is optional and defaults to red if not specified.
+// Finally, note that since we have defined the 'mat' space we also have to use it here.  
+
+$theme1: mat.define-light-theme((
+ color: (
+   primary: $theme1-primary,
+   accent: $theme1-accent,
+   warn: $theme1-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+// The above code-block defines our custom theme 'theme1'.
+// We can construct a theme by calling either define-light-theme or define-dark-theme. 
+// The choice of a light versus a dark theme determines the background and foreground colors used throughout the components.
+
+@include mat.all-component-themes($theme1);
+// The above line includes our custom theme, as a core theme of our entire app.
+
+// Alternatively, we can include the theme style (or any other theme, even from another file), only for specifc material components. e.g.:
+// @include mat-core-theme($theme1);
+// @include mat-button-theme($theme1);
+// @include mat-checkbox-theme($theme1);
+// Note that we also will need to include the mat-core-theme mixin as well, 
+// which contains theme-specific styles for common behaviors (such as ripples.
+
+
+
+// Now it's time for theming the matero/extensions, along with DateTimepicker
+// ----------------------------------------------------------------------------------
+
+// Let's define the 'default' colors and the 'default' theme for the matero/extensions
+$default-primary: mat.define-palette(mat.$indigo-palette);
+$default-accent: mat.define-palette(mat.$pink-palette);
+$default-theme: mat.define-light-theme((
+    color: (
+      primary: $default-primary,
+      accent: $default-accent,
+    //   warn: $indigo-pink-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+));
+
+@include mtx.all-component-themes($default-theme);
+// Note: instead of the default-theme we can also use any other theme, e.g. the theme 'theme1' defined previously.
+
+
+
+
+
+
+

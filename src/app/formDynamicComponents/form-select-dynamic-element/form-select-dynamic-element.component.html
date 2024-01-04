@@ -1,11 +1,19 @@
 <br />
 <!-- select -->
 <div [formGroup]="dfGroup">
-  <label for="{{ fieldConfig.formElementControlName }}">
+
+  <mat-form-field>
+
+  <!-- <label for="{{ fieldConfig.formElementControlName }}">
     {{ fieldConfig.formElementLabel }}:
-  </label>
+  </label> -->
+  <mat-label>
+    {{ fieldConfig.formElementLabel }}:
+  </mat-label>
   <br />
-  <select
+
+  <!-- Using the native <select> element inside of <mat-form-field> -->
+  <select matNativeControl
     formControlName="{{ fieldConfig.formElementControlName }}"
     id="{{ fieldConfig.formElementControlName }}"
     name="{{ fieldConfig.formElementControlName }}"
@@ -31,4 +39,6 @@
       {{ item.itemValue }}
     </option>
   </select>
+
+</mat-form-field>
 </div>
