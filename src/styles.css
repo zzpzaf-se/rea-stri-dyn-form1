@@ -1,5 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+
+ 
+/* For material Themes */
+/* Theme Name: indigo-pink (default) - Light, indigo, pink, red */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Theme Name: deeppurple-amber - Light	deep-purple, amber, red */
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */ 
+
+/* Theme Name: pink-bluegrey - Dark	pink, blue-grey, red */
+/* @import '@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+
+/* Theme Name: purple-green - Dark	purple, green, red */
+/* @import '@angular/material/prebuilt-themes/purple-green.css'; */
+
+
+
+
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

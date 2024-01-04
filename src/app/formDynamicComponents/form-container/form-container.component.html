@@ -1,15 +1,22 @@
-<p>Dynamic Form (form-container)</p>
-<form
-  [formGroup]="dynamicFormGroup"  
-  (ngSubmit)= "onFormSubmit($event)"
->
-  <ng-container
-    *ngFor="let field of formItems"
-    dynFormElementDirective
-    [formFieldConfig]="field"
-    [dynFormGroup]="dynamicFormGroup"
-  >
-  </ng-container>
-</form>
+<mat-card>
+  <mat-card-content>
+  
+    <mat-toolbar class="mat-card-title" color="primary">
+      {{fornCardTitle}}
+      <button mat-icon-button inline=true (click)='onClose()'> 
+          <mat-icon [inline]="true" style = "font-size:smaller;" >  close   </mat-icon> 
+      </button>
+  </mat-toolbar>  
 
+  <form [formGroup]="dynamicFormGroup" (ngSubmit)="onFormSubmit($event)">
+    <ng-container
+      *ngFor="let field of formItems"
+      dynFormElementDirective
+      [formFieldConfig]="field"
+      [dynFormGroup]="dynamicFormGroup"
+    >
+    </ng-container>
+  </form>
+</mat-card-content>
 
+</mat-card>

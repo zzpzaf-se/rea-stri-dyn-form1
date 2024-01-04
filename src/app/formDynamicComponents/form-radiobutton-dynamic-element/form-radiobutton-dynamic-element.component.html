@@ -1,34 +1,34 @@
-<!-- <div [formGroup]="dfGroup">
-  {{ fieldConfig.formElementLabel }}:
-  <br />
-  <label *ngFor="let item of fieldConfig.formElementValues">
-    <input
-      formControlName="{{ fieldConfig.formElementControlName }}"
-      type="{{ fieldConfig.formElementInputType }}"
-      name="{{ fieldConfig.formElementControlName }}"
-      [checked]="item.valuePreselected"
-      value="{{item.value}}"
-    />
-    {{ item.value }}
-  </label>
-</div> -->
 <br />
 <!-- radio-button -->
 <!-- I couldn’t neither interpolate nor use property-binding for the attribute "type" of an input tag. -->
+
 <div [formGroup]="dfGroup">
-  {{ fieldConfig.formElementLabel }}:
-  <br />
-  <label *ngFor="let item of fieldConfig.formElementValues">
-    <!-- <input
-      [type]="fieldConfig.formElementInputType" 
-      [value]="item.valueKey"
+  <!-- {{ fieldConfig.formElementLabel }}: -->
+
+
+  <!-- <label *ngFor="let item of fieldConfig.formElementValues">
+        <input
+          type="radio"
+          [value]="item.itemKeyName"
+          [formControlName]="fieldConfig.formElementControlName"
+        />
+        {{ item.itemValue }}
+      </label> -->
+
+
+  <!-- <mat-form-field> -->
+    <mat-label> {{ fieldConfig.formElementLabel }}: </mat-label>
+    <br />
+    <mat-radio-group 
       [formControlName]="fieldConfig.formElementControlName"
-    /> -->
-    <input
-    type="radio" 
-    [value]="item.itemKeyName"
-    [formControlName]="fieldConfig.formElementControlName"
-    />
-    {{ item.itemValue }}
-  </label>
+      aria-label="Set the Item Status" 
+      >
+      <mat-radio-button color="primary"
+      *ngFor="let item of fieldConfig.formElementValues"
+      [value]="item.itemKeyName"
+      >
+        "{{ item.itemValue }}"
+      </mat-radio-button>
+    </mat-radio-group>
+  <!-- </mat-form-field> -->
 </div>
